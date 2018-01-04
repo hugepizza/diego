@@ -15,6 +15,8 @@ _obj
 /bin
 /data
 /assets
+/bundles
+/Godeps
 
 # Architecture specific extensions/prefixes
 *.[568vq]
@@ -28,5 +30,32 @@ _cgo_export.*
 *.exe
 *.test
 *.prof
-bundles
-Godeps
+
+/ui/dist
+/ui/tmp
+/ui/out-tsc
+/ui/node_modules
+/ui/.idea
+/ui/.project
+/ui/.classpath
+/ui/.c9/
+/ui/*.launch
+/ui/.settings/
+/ui/.sass-cache
+/ui/connect.lock
+/ui/coverage
+/ui/libpeerconnection.log
+/ui/npm-debug.log
+/ui/testem.log
+/ui/typings
+/ui/e2e/*.js
+/ui/e2e/*.map
+
+*.sublime-workspace
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
