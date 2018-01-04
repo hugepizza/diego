@@ -41,6 +41,7 @@ func uiRoute(m *mux.Router) {
 	m.NotFoundHandler = NewPage404()
 }
 
+// GetVersion return api version.
 func GetVersion(rw http.ResponseWriter, req *http.Request) {
 	rw.Write([]byte(version.GetVersion()))
 	logrus.Infof("get Version")
