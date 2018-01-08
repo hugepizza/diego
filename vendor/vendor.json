@@ -1,0 +1,25 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "msTaHvvIzp3ANluqUAd1BufLEac=",
+			"path": "github.com/ckeyer/logrus",
+			"revision": "cc4f6cd584d250e1f1ee03aa19e2e15e9790e7e1",
+			"revisionTime": "2017-12-03T12:12:45Z"
+		},
+		{
+			"checksumSHA1": "e7mAb9jMke2ASQGZepFgOmfBFzM=",
+			"path": "github.com/spf13/cobra",
+			"revision": "1be1d2841c773c01bee8289f55f7463b6e2c2539",
+			"revisionTime": "2017-11-23T00:13:03Z"
+		},
+		{
+			"checksumSHA1": "fKq6NiaqP3DFxnCRF5mmpJWTSUA=",
+			"path": "github.com/spf13/pflag",
+			"revision": "4c012f6dcd9546820e378d0bdda4d8fc772cdfea",
+			"revisionTime": "2017-11-06T14:28:49Z"
+		}
+	],
+	"rootPath": "github.com/ckeyer/diego"
+}
