@@ -1,9 +1,17 @@
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
-import { AdminLayoutComponent } from './layout/admin/admin-layout.component';
-import { AuthLayoutComponent } from './layout/auth/auth-layout.component';
+// import { AuthComponent } from './layout/auth/auth.component';
+import { SharedModule } from './shared/shared.module';
 import { Error404Component } from './pages/error404/error404.component';
 
-export const AppRoutes: Routes = [{
-   { path: '**', component: Error404Component }
-}];
+@NgModule({
+  imports: [
+    SharedModule
+  ],
+  declarations: [Error404Component]
+})
+
+export const AppRoutes: Routes = [
+  { path: '', component: Error404Component },
+  { path: '**', component: Error404Component }
+];
