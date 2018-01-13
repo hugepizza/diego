@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpModule } from '@angular/http';
@@ -20,10 +21,11 @@ import { AuthComponent } from './layout/auth/auth.component'
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes),
     HttpModule,
     FormsModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     { provide: LocationStrategy, useClass: PathLocationStrategy }

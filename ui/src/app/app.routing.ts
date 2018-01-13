@@ -4,14 +4,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { Error404Component } from './pages/error404/error404.component';
 
-@NgModule({
-  imports: [
-    SharedModule
-  ],
-  declarations: [Error404Component]
-})
+// @NgModule({
+//   imports: [
+//     SharedModule
+//   ],
+//   declarations: [Error404Component]
+// })
 
 export const AppRoutes: Routes = [
   { path: '', component: Error404Component },
-  { path: '**', component: Error404Component }
+  { path: 'error404', component: Error404Component },
+  { path: '**', redirectTo: 'error404' },
 ];
