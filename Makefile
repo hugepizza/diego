@@ -37,13 +37,16 @@ hash:
 test:
 	$(GO) test -ldflags="$(LD_FLAGS)" $$(go list ./... |grep -v "vendor")
 
+go-bindata:
+	which go-bindata || go get github.com/jteeuwen/go-bindata/go-bindata
+	go-bindata -nomemcopy -prefix='ui/dist' -o api/view/assets.go -pkg=view ./ui/dist/...
+
 release: clean local
 	mkdir -p bundles/$(PACKAGE_NAME)
+	echo $(VERSION) > bundles/$(PACKAGE_NAME)/release.txt
+	cd bundles && $(HASH) $(APP) > $(PACKAGE_NAME)/sha1.txt
 	mv bundles/$(APP) bundles/$(PACKAGE_NAME)
-	cd bundles ;\
-	 $(HASH) $(PACKAGE_NAME)/$(APP) > $(PACKAGE_NAME)/sha1.txt ;\
-	 echo $(VERSION) > $(PACKAGE_NAME)/release.txt ;\
-	 tar zcvf $(PACKAGE_NAME).tgz $(PACKAGE_NAME);
+	cd bundles && tar zcvf $(PACKAGE_NAME).tgz $(PACKAGE_NAME)
 
 clean:
 	rm -rf bundles/*

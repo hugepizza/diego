@@ -9,7 +9,6 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { AccordionAnchorDirective } from './accordion/accordionanchor.directive';
 import { AccordionLinkDirective } from './accordion/accordionlink.directive';
 import { AccordionDirective } from './accordion/accordion.directive';
-import { ScrollModule } from './scroll/scroll.module';
 import { CalendarModule } from 'angular-calendar';
 import { AgmCoreModule } from '@agm/core';
 import { DragAndDropModule } from 'angular-draggable-droppable';
@@ -37,7 +36,6 @@ import { HorizontalTimelineModule } from "./horizontal-timeline/horizontal-timel
     ReactiveFormsModule,
     NgbModule.forRoot(),
     ClickOutsideModule,
-    ScrollModule,
     CalendarModule.forRoot(),
     AgmCoreModule.forRoot({apiKey: 'AIzaSyCE0nvTeHBsiQIrbpMVTe489_O5mwyqofk'}),
     DragAndDropModule,
@@ -73,7 +71,6 @@ import { HorizontalTimelineModule } from "./horizontal-timeline/horizontal-timel
     SpinnerComponent,
     TitleComponent,
     ClickOutsideModule,
-    ScrollModule,
     CalendarModule,
     AgmCoreModule,
     DragAndDropModule,

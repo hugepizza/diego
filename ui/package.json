@@ -27,7 +27,6 @@
     "@types/chartist": "^0.9.37",
     "angular-calendar": "^0.23.2",
     "angular-draggable-droppable": "^2.0.0",
-    "angular-io-slimscroll": "^2.3.2",
     "angular2-datatable": "^0.6.0",
     "angular2-lightbox": "^1.2.1",
     "angular2-material-datepicker": "^0.5.0",

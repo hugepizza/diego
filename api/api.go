@@ -1,18 +1,17 @@
 package api
 
 import (
-	"encoding/json"
 	"net"
 	"net/http"
 
-	"github.com/ckeyer/commons/version"
+	"github.com/ckeyer/diego/api/view"
 	"github.com/ckeyer/logrus"
-	"github.com/ckeyer/mux"
+	"github.com/gin-gonic/gin"
 )
 
 const (
 	API_PREFIX = "/api"
-	UI_PREFIX  = "/ui"
+	UI_PREFIX  = "/release"
 )
 
 // Serve start http server.
@@ -22,15 +21,15 @@ func Serve(addr string) error {
 		return err
 	}
 
-	m := mux.NewRouter()
-	m.KeepContext = true
+	gs := gin.New()
+	gs.Use(MDRecovery(), MDLogger())
+	gs.Use(MDCors())
 
-	m.AddMiddlewareFunc(MDCors)
-	m.AddMiddlewareFunc(MDLogger)
-	apiRoute(m.PathPrefix(API_PREFIX).Subrouter())
-	uiRoute(m.PathPrefix(UI_PREFIX).Subrouter())
+	gs.NoRoute(view.UI())
 
-	err = http.Serve(lis, m)
+	apiRoute(gs.Group(API_PREFIX))
+
+	err = http.Serve(lis, gs)
 	if err != nil {
 		return err
 	}
@@ -39,27 +38,10 @@ func Serve(addr string) error {
 }
 
 // apiRoute api router.
-func apiRoute(m *mux.Router) {
-	m.NotFoundHandler = NewPage404()
-	m.Path("/version").HandlerFunc(GetVersion)
+func apiRoute(gr *gin.RouterGroup) {
+	gr.GET("/path/*path", testH)
 }
 
-// apiRoute api router.
-func uiRoute(m *mux.Router) {
-	m.NotFoundHandler = NewPage404()
-}
-
-// GetVersion return api version.
-func GetVersion(rw http.ResponseWriter, req *http.Request) {
-	logrus.Infof("get Version")
-	JSON(rw, map[string]string{"version": version.GetVersion()})
-}
-
-func JSON(rw http.ResponseWriter, data interface{}) {
-	rw.Header().Set("Content-Type", "application/json; charset=utf-8")
-	err := json.NewEncoder(rw).Encode(data)
-	if err != nil {
-		logrus.Errorf("json format failed, %s", err)
-		rw.WriteHeader(http.StatusInternalServerError)
-	}
+func testH(ctx *gin.Context) {
+	logrus.Infof("path: %s", ctx.Param("path"))
 }
