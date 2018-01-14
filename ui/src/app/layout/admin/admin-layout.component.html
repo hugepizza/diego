@@ -1,0 +1,294 @@
+<div (window:resize)="onResize($event)" id="theme-config" class="{{ menuType }} {{ headerType }} {{ sidebarType }} {{ themeType}}">
+  <div id="wrapper">
+    <nav class="navbar navbar-default navbar-static-top m-b-0">
+      <div class="navbar-header">
+        <a class="navbar-toggle font-20 hidden-sm hidden-md hidden-lg waves-effect waves-light" id="mobile-collapse" [exclude]="'#main_navbar'" (clickOutside)="onClickedOutside($event)" (click)="onToggled()" href="javascript:" data-toggle="collapse" data-target=".navbar-collapse">
+          <i class="{{ toggledArrow }}"></i>
+        </a>
+        <div class="top-left-part">
+          <a class="logo" [routerLink]="['/']">
+            <b><img src="assets/images/logo.png" alt="home"/></b>
+            <span><img src="assets/images/logo-text.png" alt="homepage" class="dark-logo"/></span>
+          </a>
+        </div>
+        <ul class="nav navbar-top-links navbar-left hidden-xs">
+          <li>
+            <a href="javascript:" class="sidebartoggler font-20 waves-effect waves-light" (click)="onToggled()">
+              <i class="{{ toggledArrow }}"></i>
+            </a>
+          </li>
+          <li>
+            <form role="search" class="app-search hidden-xs">
+              <i class="icon-magnifier"></i>
+              <input placeholder="Search..." class="form-control">
+            </form>
+          </li>
+        </ul>
+        <ul class="nav navbar-top-links navbar-right pull-right">
+          <li class="dropdown">
+            <a class="dropdown-toggle waves-effect waves-light font-20" data-toggle="dropdown" href="javascript:">
+              <i class="icon-speech"></i>
+              <span class="badge badge-xs badge-danger">6</span>
+            </a>
+            <ul class="dropdown-menu mailbox animated bounceInDown">
+              <li>
+                <div class="drop-title">You have 4 new messages</div>
+              </li>
+              <li>
+                <div class="message-center">
+                  <a href="javascript:">
+                    <div class="user-img">
+                      <img src="assets/images/users/1.jpg" alt="user" class="img-circle">
+                      <span class="profile-status online pull-right"></span>
+                    </div>
+                    <div class="mail-contnet">
+                      <h5>Pavan kumar</h5>
+                      <span class="mail-desc">Just see the my admin!</span>
+                      <span class="time">9:30 AM</span>
+                    </div>
+                  </a>
+                  <a href="javascript:">
+                    <div class="user-img">
+                      <img src="assets/images/users/2.jpg" alt="user" class="img-circle">
+                      <span class="profile-status busy pull-right"></span>
+                    </div>
+                    <div class="mail-contnet">
+                      <h5>Sonu Nigam</h5>
+                      <span class="mail-desc">I've sung a song! See you at</span>
+                      <span class="time">9:10 AM</span>
+                    </div>
+                  </a>
+                  <a href="javascript:">
+                    <div class="user-img">
+                      <img src="assets/images/users/3.jpg" alt="user" class="img-circle"><span
+                      class="profile-status away pull-right"></span>
+                    </div>
+                    <div class="mail-contnet">
+                      <h5>Arijit Sinh</h5>
+                      <span class="mail-desc">I am a singer!</span>
+                      <span class="time">9:08 AM</span>
+                    </div>
+                  </a>
+                  <a href="javascript:">
+                    <div class="user-img">
+                      <img src="assets/images/users/4.jpg" alt="user" class="img-circle">
+                      <span class="profile-status offline pull-right"></span>
+                    </div>
+                    <div class="mail-contnet">
+                      <h5>Pavan kumar</h5>
+                      <span class="mail-desc">Just see the my admin!</span>
+                      <span class="time">9:02 AM</span>
+                    </div>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <a class="text-center" href="javascript:">
+                  <strong>See all notifications</strong>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle waves-effect waves-light font-20" data-toggle="dropdown" href="javascript:">
+              <i class="icon-calender"></i>
+              <span class="badge badge-xs badge-danger">3</span>
+            </a>
+            <ul class="dropdown-menu dropdown-tasks animated slideInUp">
+              <li>
+                <a href="javascript:">
+                  <div>
+                    <p>
+                      <strong>Task 1</strong>
+                      <span class="pull-right text-muted">40% Complete</span>
+                    </p>
+                    <div class="progress progress-striped active">
+                      <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                        <span class="sr-only">40% Complete (success)</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="javascript:">
+                  <div>
+                    <p>
+                      <strong>Task 2</strong>
+                      <span class="pull-right text-muted">20% Complete</span>
+                    </p>
+                    <div class="progress progress-striped active">
+                      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                        <span class="sr-only">20% Complete</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="javascript:">
+                  <div>
+                    <p>
+                      <strong>Task 3</strong>
+                      <span class="pull-right text-muted">60% Complete</span>
+                    </p>
+                    <div class="progress progress-striped active">
+                      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                        <span class="sr-only">60% Complete (warning)</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="javascript:">
+                  <div>
+                    <p>
+                      <strong>Task 4</strong>
+                      <span class="pull-right text-muted">80% Complete</span>
+                    </p>
+                    <div class="progress progress-striped active">
+                      <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                        <span class="sr-only">80% Complete (danger)</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a class="text-center" href="javascript:">
+                  <strong>See All Tasks</strong>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="right-side-toggle">
+            <a class="right-side-toggler waves-effect waves-light b-r-0 font-20" href="javascript:" (click)="toggleSetting()">
+              <i class="icon-settings"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <aside id="main_navbar" class="sidebar" role="navigation" (clickOutside)="onClickedOutside($event)" [exclude]="'#mobile-collapse'">
+      <div class="scroll-sidebar" slimScroll width="auto" [attr.height]="windowHeight+'px'" size="5px" color="#dcdcdc" opacity="0.4" allowPageScroll="false">
+        <div class="user-profile">
+          <div class="dropdown user-pro-body">
+            <div class="profile-image">
+              <img src="assets/images/users/hanna.jpg" alt="user-img" class="img-circle">
+              <a href="javascript:" class="dropdown-toggle u-dropdown text-blue" data-toggle="dropdown" aria-expanded="false">
+                <span class="badge badge-danger">
+                    <i class="fa fa-angle-down"></i>
+                </span>
+              </a>
+              <ul class="dropdown-menu animated flipInY">
+                <li><a href="javascript:"><i class="fa fa-user"></i> Profile</a></li>
+                <li><a href="javascript:"><i class="fa fa-inbox"></i> Inbox</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="javascript:"><i class="fa fa-cog"></i> Account Settings</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="javascript:"><i class="fa fa-power-off"></i> Logout</a></li>
+              </ul>
+            </div>
+            <p class="profile-text m-t-15 font-16"><a href="javascript:"> Hanna Gover</a></p>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav">
+          <div class="main-menu" appAccordion>
+            <div *ngFor="let asideItems of menuItems.getAll(); let i_main = index;">
+              <ul id="side-menu" *ngFor="let asideItem of asideItems.main; let i_sub = index;" appAccordionLink group="{{asideItem.state}}">
+                <!-- external link -->
+                <li [routerLinkActive]="['active']" *ngIf="asideItem.type === 'external'" appAccordionLink group="{{asideItem.state}}">
+                  <a appAccordionLink class="waves-effect" href="{{asideItem.external}}" target="{{asideItem.target ? '_blank' : '_self'}}" appAccordionToggle>
+                    <i class="{{ asideItem.icon }} fa-fw"></i>
+                    <span class="hide-menu">{{ asideItem.name }}
+                      <span *ngFor="let asideBadge of asideItem.badge" class="label label-rounded label-{{ asideBadge.type }} pull-right">{{asideBadge.value}}</span>
+                    </span>
+                  </a>
+                </li>
+                <!-- direct link -->
+                <li [routerLinkActive]="['active']" *ngIf="asideItem.type === 'link'" appAccordionLink group="{{asideItem.state}}">
+                  <a appAccordionLink class="waves-effect" [routerLink]="['/', asideItem.main_state, asideItem.state]" target="{{asideItem.target ? '_blank' : '_self'}}" appAccordionToggle *ngIf="asideItem.main_state; else mainContent">
+                    <i class="{{ asideItem.icon }} fa-fw"></i>
+                    <span class="hide-menu">{{ asideItem.name }}
+                      <span *ngFor="let asideBadge of asideItem.badge" class="label label-rounded label-{{ asideBadge.type }} pull-right">{{asideBadge.value}}</span>
+                    </span>
+                  </a>
+                  <ng-template #mainContent>
+                    <a appAccordionLink class="waves-effect" [routerLink]="['/', asideItem.state]" target="{{asideItem.target ? '_blank' : '_self'}}" appAccordionToggle>
+                      <i class="{{ asideItem.icon }} fa-fw"></i>
+                      <span class="hide-menu">{{ asideItem.name }}
+                        <span *ngFor="let asideBadge of asideItem.badge" class="label label-rounded label-{{ asideBadge.type }} pull-right">{{asideBadge.value}}</span>
+                      </span>
+                    </a>
+                  </ng-template>
+                </li>
+                <!-- level menu -->
+                <li [routerLinkActive]="['active']" *ngIf="asideItem.type === 'sub'" appAccordionLink group="{{asideItem.state}}">
+                  <a appAccordionLink class="waves-effect" [routerLinkActive]="['active']" href="javascript:" appAccordionToggle (click)="select(i_main+''+i_sub)">
+                    <i class="{{ asideItem.icon }} fa-fw"></i>
+                    <span class="hide-menu">{{ asideItem.name }}
+                      <span *ngFor="let asideBadge of asideItem.badge" class="label label-rounded label-{{ asideBadge.type }} pull-right">{{asideBadge.value}}</span>
+                    </span>
+                  </a>
+                  <ul [@toggledMenu]="[selected === i_main+''+i_sub ? 'in' : 'out']" class="collapse" [ngClass]="[selected === i_main+''+i_sub ? 'in' : 'out']">
+                    <ng-template ngFor let-asideChildren [ngForOf]="asideItem.children">
+                      <li [routerLinkActive]="['active']" *ngIf="asideChildren.type !== 'sub'">
+                        <a appAccordionLink class="waves-effect" [routerLink]="['/', asideItem.state, asideChildren.state]" target="{{asideChildren.target ? '_blank' : '_self'}}">
+                          {{ asideChildren.name }}
+                          <span *ngFor="let asideChildrenBadge of asideChildren.badge" class="label label-rounded label-{{ asideChildrenBadge.type }} pull-right">{{asideChildrenBadge.value}}</span>
+                        </a>
+                      </li>
+
+                      <li [routerLinkActive]="['active']" *ngIf="asideChildren.type === 'sub'" appAccordionLink group="sub-toggled">
+                        <a appAccordionLink class="waves-effect" href="javascript:" appAccordionToggle (click)="selectSub(i_main+''+i_sub+''+asideChildren.state, i_main+''+i_sub)">
+                          <i class="{{ asideChildren.icon }}"></i>
+                          {{ asideChildren.name }}
+                          <span *ngFor="let asideChildrenBadge of asideChildren.badge" class="label label-rounded label-{{ asideChildrenBadge.type }}">{{asideChildrenBadge.value}}</span>
+                        </a>
+                        <ul [@toggledSubMenu]="[selectedSub === i_main+''+i_sub+''+asideChildren.state ? 'on' : 'off']" 
+                          class="collapse"
+                          [ngClass]="[selectedSub === i_main+''+i_sub+''+asideChildren.state ? 'on' : 'off']">
+                          <ng-template ngFor let-asideChildrenSub [ngForOf]="asideChildren.children">
+                            <li [routerLinkActive]="['active']">
+                              <a appAccordionLink class="waves-effect" 
+                                [routerLink]="['/', asideItem.state, asideChildren.state, asideChildrenSub.state]" 
+                                target="{{asideChildrenSub.target ? '_blank' : '_self'}}">
+                                {{ asideChildrenSub.name }}
+                                <span *ngFor="let asideChildrenSubBadge of asideChildrenSub.badge" 
+                                  class="label label-rounded label-{{ asideChildrenSubBadge.type }} pull-right">{{asideChildrenSubBadge.value}}</span>
+                              </a>
+                            </li>
+                          </ng-template>
+                        </ul>
+                      </li>
+                    </ng-template>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="p-20 p-t-10">
+          <span class="hide-menu">
+            <a href="javascript:" target="_blank" class="btn btn-success">Buy Cubic Admin</a>
+            <a href="javascript:" target="_blank" class="btn btn-default m-t-15">Check Documentation</a>
+          </span>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+  <!-- /#wrapper -->
+</div>
+<!-- /#theme-config -->
+
+

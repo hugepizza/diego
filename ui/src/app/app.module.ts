@@ -11,13 +11,14 @@ import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
 import { Error404Component } from './pages/error404/error404.component';
 import { AuthComponent } from './layout/auth/auth.component'
-
+import { AdminLayoutComponent } from './layout/admin/admin-layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     Error404Component,
-    AuthComponent
+    AuthComponent,
+    AdminLayoutComponent
   ],
   imports: [
     BrowserModule,
