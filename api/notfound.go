@@ -1,16 +1,12 @@
 package api
 
-import "net/http"
+import (
+	"github.com/ckeyer/diego/api/view"
+	"github.com/gin-gonic/gin"
+)
 
-type Page404 struct {
-}
-
-// NewPage404
-func NewPage404() *Page404 {
-	return &Page404{}
-}
-
-// ServeHTTP ...
-func (p *Page404) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
-	rw.Write([]byte("404 hahaha"))
+func NotFound() gin.HandlerFunc {
+	return func(ctx *gin.Context) {
+		return view.UI()
+	}
 }

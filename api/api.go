@@ -4,7 +4,6 @@ import (
 	"net"
 	"net/http"
 
-	"github.com/ckeyer/diego/api/view"
 	"github.com/ckeyer/logrus"
 	"github.com/gin-gonic/gin"
 )
@@ -24,8 +23,7 @@ func Serve(addr string) error {
 	gs := gin.New()
 	gs.Use(MDRecovery(), MDLogger())
 	gs.Use(MDCors())
-
-	gs.NoRoute(view.UI())
+	gs.NoRoute(NotFound())
 
 	apiRoute(gs.Group(API_PREFIX))
 
