@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 8000 --host 0.0.0.0",
+    "start": "ng serve --aot --port 8000 --host 0.0.0.0",
     "build": "ng build --prod --aot",
     "test": "ng test",
     "lint": "ng lint",
@@ -35,7 +35,7 @@
     "chartist": "^0.11.0",
     "css-animator": "^2.3.0",
     "fancybox": "^3.0.0",
-    "jquery": "^3.2.1",
+    "jquery": "^2.2.4",
     "jquery-sparkline": "^2.4.0",
     "materialize-css": "^0.100.2",
     "morris.js": "^0.5.0",
