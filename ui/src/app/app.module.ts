@@ -24,9 +24,9 @@ import { AdminLayoutComponent } from './layout/admin/admin-layout.component';
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes),
+    SharedModule,
     HttpModule,
     FormsModule,
-    SharedModule,
   ],
   providers: [
     { provide: LocationStrategy, useClass: PathLocationStrategy }

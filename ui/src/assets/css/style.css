@@ -6665,7 +6665,7 @@ div.white-box .color-picker {
 }
 
 .carousel-widget {
-    background: url(../images/flowers.jpg) -140px;
+    /*background: url(../images/flowers.jpg) -140px;*/
     background-size: cover;
     position: relative;
     text-align: center;
