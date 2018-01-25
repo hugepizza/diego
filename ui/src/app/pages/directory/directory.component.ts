@@ -10,6 +10,7 @@ export class DirectoryComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  	console.log('hellllo')
   }
 
 }
