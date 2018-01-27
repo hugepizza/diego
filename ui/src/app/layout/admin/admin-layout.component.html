@@ -23,6 +23,13 @@
             </form>
           </li>
         </ul>
+        <ul class="nav navbar-top-links navbar-right pull-right">
+          <li class="right-side-toggle">
+            <a class="right-side-toggler waves-effect waves-light b-r-0 font-20" href="javascript:" (click)="toggleSetting()">
+              <i class="icon-settings"></i>
+            </a>
+          </li>
+        </ul>
       </div>
     </nav>
 
@@ -126,6 +133,56 @@
       </div>
     </aside>
 
+    <div class="page-wrapper" [style.min-height.px]="windowHeight">
+      <div class="container-fluid">
+            <app-title></app-title>
+            <router-outlet>
+              <app-spinner></app-spinner>
+            </router-outlet>
+        <!-- ===== Right-Sidebar ===== -->
+        <div [@slideInOut]="settingToggle" class="right-sidebar {{ settingToggle }}">
+          <div class="slimscrollright" slimScroll width="auto" [attr.height]="windowHeight+60+'px'" size="5px" color="#dcdcdc" opacity="0.4" allowPageScroll="false">
+            <div class="rpanel-title"> 页面设置 <span (click)="toggleSetting()"><i class="icon-close right-side-toggler"></i></span></div>
+            <div class="r-panel-body">
+              <ul class="hidden-xs">
+                <li><b>布局选项</b></li>
+                <li>
+                  <div class="checkbox checkbox-danger">
+                    <input id="headcheck" type="checkbox" class="fxhdr" (change)="changeHeader()">
+                    <label for="headcheck"> 固定顶菜单 </label>
+                  </div>
+                </li>
+                <li>
+                  <div class="checkbox checkbox-warning">
+                    <input id="sidecheck" type="checkbox" class="fxsdr" (change)="changeSidebar()">
+                    <label for="sidecheck"> 固定左菜单 </label>
+                  </div>
+                </li>
+              </ul>
+              <ul id="themecolors" class="m-t-20">
+                <li><b>使用亮色菜单</b></li>
+                <li (click)="changeThemeType('default')"><a href="javascript:" data-theme="default" class="default-theme" [ngClass]="{'working': themeType === 'default'}">1</a></li>
+                <li (click)="changeThemeType('green')"><a href="javascript:" data-theme="green" class="green-theme" [ngClass]="{'working': themeType === 'green'}">2</a></li>
+                <li (click)="changeThemeType('yellow')"><a href="javascript:" data-theme="yellow" class="yellow-theme" [ngClass]="{'working': themeType === 'yellow'}">3</a></li>
+                <li (click)="changeThemeType('red')"><a href="javascript:" data-theme="red" class="red-theme" [ngClass]="{'working': themeType === 'red'}">4</a></li>
+                <li (click)="changeThemeType('purple')"><a href="javascript:" data-theme="purple" class="purple-theme" [ngClass]="{'working': themeType === 'purple'}">5</a></li>
+                <li (click)="changeThemeType('black')"><a href="javascript:" data-theme="black" class="black-theme" [ngClass]="{'working': themeType === 'black'}">6</a></li>
+                <li class="db"><b>使用深色菜单</b></li>
+                <li (click)="changeThemeType('default-dark')"><a href="javascript:" data-theme="default-dark" class="default-dark-theme" [ngClass]="{'working': themeType === 'default-dark'}">7</a></li>
+                <li (click)="changeThemeType('green-dark')"><a href="javascript:" data-theme="green-dark" class="green-dark-theme" [ngClass]="{'working': themeType === 'green-dark'}">8</a></li>
+                <li (click)="changeThemeType('yellow-dark')"><a href="javascript:" data-theme="yellow-dark" class="yellow-dark-theme" [ngClass]="{'working': themeType === 'yellow-dark'}">9</a></li>
+                <li (click)="changeThemeType('red-dark')"><a href="javascript:" data-theme="red-dark" class="red-dark-theme" [ngClass]="{'working': themeType === 'red-dark'}">10</a></li>
+                <li (click)="changeThemeType('purple-dark')"><a href="javascript:" data-theme="purple-dark" class="purple-dark-theme" [ngClass]="{'working': themeType === 'purple-dark'}">11</a></li>
+                <li (click)="changeThemeType('black-dark')"><a href="javascript:" data-theme="black-dark" class="black-dark-theme" [ngClass]="{'working': themeType === 'black-dark'}">12</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- ===== Right-Sidebar-End ===== -->
+      </div>
+      <!-- /.container-fluid -->
+      <footer class="footer t-a-c"> © 2018 ckeyer.com</footer>
+    </div>
   </div>
   <!-- /#wrapper -->
 </div>

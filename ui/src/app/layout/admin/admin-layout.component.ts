@@ -67,7 +67,7 @@ export class AdminLayoutComponent implements OnInit {
   public settingToggle: string;
 
   constructor(public menuItems: MenuItems) {
-    this.themeType = 'default';
+    this.themeType = 'black-dark';
     this.toggledArrow = 'icon-arrow-left-circle';
     this.settingToggle = 'off';
     this.windowHeight = window.innerHeight - 60;
