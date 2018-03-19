@@ -79,7 +79,7 @@
                       <a [routerLink]="['/author/' + file.authorId]">{{file.authorName}}</a>
                     </td>
                     <td class="max-texts">
-                      <span *ngFor="let lb of listLabels(file.labels)" class="label" [ngClass]="lb.value">ss{{lb.key}}</span>
+                      <span *ngFor="let lb of listLabels(file.labels)" class="label" [ngClass]="lb.value">{{lb.key}}</span>
                       {{file.fileDesc}}
                     </td>
                     <td class="hidden-xs"><i class="fa fa-paperclip"></i></td>
