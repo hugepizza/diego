@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-package ckeyer.com.diego.protos;
-
-import "google/api/annotations.proto";
-
-option go_package = "protos";
