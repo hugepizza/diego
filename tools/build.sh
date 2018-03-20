@@ -21,6 +21,13 @@ BUILD_AT=`date "+%Y-%m-%dT%H:%M:%SZ%z"`
 IMAGE="ckeyer/$APP"
 PACKAGE_NAME="$APP.$VERSION.$OS-$ARCH"
 
+if [ "$TRAVIS_BRANCH" != "" ]; then
+  GIT_BRANCH=$TRAVIS_BRANCH
+fi
+if [ "$TRAVIS_TAG" != "" ]; then
+  GIT_BRANCH=$TRAVIS_TAG
+fi
+
 LD_FLAGS="-X github.com/ckeyer/commons/version.version=$VERSION \
  -X github.com/ckeyer/commons/version.gitCommit=$GIT_COMMIT \
  -X github.com/ckeyer/commons/version.buildAt=$BUILD_AT -w"
