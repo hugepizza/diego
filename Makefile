@@ -41,6 +41,13 @@ hash:
 test:
 	$(GO) test -ldflags="$(LD_FLAGS)" $$(go list ./... |grep -v "vendor")
 
+test-in-docker:
+	docker run --rm \
+	 -v ${PWD}:/go/src/${PKG} \
+	 -w /go/src/${PKG} \
+	 golang:alpine \
+	 go test -ldflags="$(LD_FLAGS)" $$(go list ./... |grep -v "vendor")
+
 go-bindata:
 	which go-bindata || go get github.com/jteeuwen/go-bindata/go-bindata
 	go-bindata -nomemcopy -prefix='ui/dist' -o api/view/assets.go -pkg=view ./ui/dist/...
