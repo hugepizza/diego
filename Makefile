@@ -17,8 +17,12 @@ LD_FLAGS := -X github.com/ckeyer/commons/version.version=$(VERSION) \
  -X github.com/ckeyer/commons/version.gitCommit=$(GIT_COMMIT) \
  -X github.com/ckeyer/commons/version.buildAt=$(BUILD_AT) -w
 
+IMAGE := ckeyer/${APP}
 DEV_IMAGE := ckeyer/dev:go
 UIDEV_IMAGE := ckeyer/dev:ng2
+
+env:
+	@echo ${OS}
 
 gorun:
 	$(GO) run -ldflags="$(LD_FLAGS)" main.go
@@ -50,6 +54,9 @@ release: clean local
 
 clean:
 	rm -rf bundles/*
+
+only-image:
+	docker build -t ${IMAGE}:${GIT_COMMIT} .
 
 dev:
 	docker run --rm -it \

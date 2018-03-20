@@ -9,9 +9,11 @@ services:
   - docker
 
 before_install:
+  - echo "start CI."
 
 script:
   - make test
 
 after_success:
   - echo "test successful."
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
