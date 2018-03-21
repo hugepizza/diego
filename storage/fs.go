@@ -11,14 +11,14 @@ type FSDriver interface {
 }
 
 type DataStoreger interface {
-	Write(info *Metadata, data io.Reader) error
+	Write(info *FileMetadata, data io.Reader) error
 }
 
 type MetadataStoreger interface {
 	os.FileInfo
-	List(string) ([]*Metadata, error) // ls
+	List(string) ([]*FileMetadata, error) // ls
 }
 
-func CreateFile(fs FSDriver, info *Metadata, data io.Reader) {
-
+func CreateFile(fs FSDriver, info *FileMetadata, data io.Reader) {
+	return
 }

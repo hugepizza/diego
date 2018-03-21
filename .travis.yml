@@ -8,10 +8,19 @@ go:
 services:
   - docker
 
+branches:
+  only:
+  - master
+  - /^v.*$/
+
 before_install:
+  - echo "start CI."
+  - env
 
 script:
   - make test
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - tools/build.sh
 
 after_success:
   - echo "test successful."
