@@ -11,14 +11,20 @@
 		{
 			"checksumSHA1": "NcH9iGLV1KaEe4V2MO0cjptWFZI=",
 			"path": "github.com/ckeyer/commons/debug",
-			"revision": "669ef0bcdca5dda3baf0f523f22e15a1615b38c4",
-			"revisionTime": "2018-01-08T16:55:07Z"
+			"revision": "3d639cdaa041e91a4cffc09ecdd3920cc13cdc38",
+			"revisionTime": "2018-03-24T10:25:11Z"
+		},
+		{
+			"checksumSHA1": "4R9lCoh0Sd/M2hGww5hN73kbIko=",
+			"path": "github.com/ckeyer/commons/validate",
+			"revision": "3d639cdaa041e91a4cffc09ecdd3920cc13cdc38",
+			"revisionTime": "2018-03-24T10:25:11Z"
 		},
 		{
 			"checksumSHA1": "rIG02T9e0/UDe1b9X3UkpIoa+Fk=",
 			"path": "github.com/ckeyer/commons/version",
-			"revision": "669ef0bcdca5dda3baf0f523f22e15a1615b38c4",
-			"revisionTime": "2018-01-08T16:55:07Z"
+			"revision": "3d639cdaa041e91a4cffc09ecdd3920cc13cdc38",
+			"revisionTime": "2018-03-24T10:25:11Z"
 		},
 		{
 			"checksumSHA1": "msTaHvvIzp3ANluqUAd1BufLEac=",
@@ -67,6 +73,18 @@
 			"path": "github.com/golang/protobuf/proto",
 			"revision": "1e59b77b52bf8e4b449a57e6f79f21226d571845",
 			"revisionTime": "2017-11-13T18:07:20Z"
+		},
+		{
+			"checksumSHA1": "w3QCCIYHgZzIXQ+xTl7oLfFrXHs=",
+			"path": "github.com/gomodule/redigo/internal",
+			"revision": "9c11da706d9b7902c6da69c592f75637793fe121",
+			"revisionTime": "2018-03-14T22:34:43Z"
+		},
+		{
+			"checksumSHA1": "HgOVOUtWUYHcNe8aipwuEZ7YLow=",
+			"path": "github.com/gomodule/redigo/redis",
+			"revision": "9c11da706d9b7902c6da69c592f75637793fe121",
+			"revisionTime": "2018-03-14T22:34:43Z"
 		},
 		{
 			"checksumSHA1": "U6lX43KDDlNOn+Z0Yyww+ZzHfFo=",
