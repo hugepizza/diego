@@ -19,5 +19,8 @@ func InternalServerErr(ctx *gin.Context, err interface{}) {
 }
 
 func abortErr(ctx *gin.Context, code int, err interface{}) {
+	if e, ok := err.(error); ok {
+		ctx.AbortWithStatusJSON(code, map[string]interface{}{"error": e.Error()})
+	}
 	ctx.AbortWithStatusJSON(code, map[string]interface{}{"error": err})
 }

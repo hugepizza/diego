@@ -42,7 +42,14 @@ func CreateOrg() gin.HandlerFunc {
 
 func ListUsers() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
+		us, err := stogr.ListUsers()
+		if err != nil {
+			InternalServerErr(ctx, err)
+			return
+		}
+		logrus.Debugf("list users")
 
+		ctx.JSON(http.StatusOK, us)
 	}
 }
 
@@ -61,7 +68,12 @@ func GetUserProfile() gin.HandlerFunc {
 
 func ListOrgs() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-
+		os, err := stogr.ListOrgs()
+		if err != nil {
+			InternalServerErr(ctx, err)
+			return
+		}
+		ctx.JSON(http.StatusOK, os)
 	}
 }
 
