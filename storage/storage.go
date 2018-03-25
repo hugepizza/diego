@@ -5,6 +5,7 @@ import (
 )
 
 type Storeger interface {
+	ExistsUser(string) (bool, error)
 	GetUser(string) (*types.User, error)
 	CreateUser(*types.User) error
 	ListUsers() ([]*types.User, error)
@@ -13,7 +14,10 @@ type Storeger interface {
 	CreateOrg(*types.Org) error
 	ListOrgs() ([]*types.Org, error)
 
+	// ExistsProject(string)
+
 	GetProject(string) (*types.Project, error)
+	ListProjects(string) ([]*types.Project, error)
 	CreateProject(*types.Project) error
 }
 
