@@ -17,6 +17,14 @@ func TestRedisConn(t *testing.T) {
 		return
 	}
 
+	mss, err := redis.Strings(conn.Do(rCmdMget, "user:ck2", "user:ck"))
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	t.Error(mss)
+	return
+
 	_, err = conn.Do("SET", "hi", "hello2")
 	if err != nil {
 		t.Error(err)

@@ -53,10 +53,12 @@ func apiRoute(gr *gin.RouterGroup) {
 	gr.GET("/users", ListUsers())
 	gr.POST("/users", CreateUser())
 	gr.GET("/users/:name", GetUserProfile())
+	gr.GET("/users/:name/check", CheckUserName())
 
 	gr.GET("/orgs", ListOrgs())
 	gr.POST("/orgs", CreateOrg())
 	gr.GET("/orgs/:name", GetOrgProfile())
+	gr.GET("/orgs/:name/check", CheckUserName())
 
 	gr.GET("/users/:name/projects", ListProjects())
 	gr.GET("/users/:name/projects/:project", GetProjectProfile())
