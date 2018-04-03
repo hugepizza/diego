@@ -49,6 +49,7 @@ _cgo_export.*
 /ui/typings
 /ui/e2e/*.js
 /ui/e2e/*.map
+/ui/package-lock.json
 
 *.sublime-workspace
 .vscode/*

@@ -19,7 +19,7 @@ LD_FLAGS := -X github.com/ckeyer/commons/version.version=$(VERSION) \
 
 # IMAGE := ckeyer/${APP}
 DEV_IMAGE := golang:alpine
-UIDEV_IMAGE := ckeyer/dev:ng2
+UIDEV_IMAGE := registry.cn-beijing.aliyuncs.com/ckeyer/dev:vue
 
 gorun:
 	$(GO) run -ldflags="$(LD_FLAGS)" main.go
@@ -66,7 +66,7 @@ only-image:
 dev:
 	docker run --rm -it \
 	 --name $(APP)-dev \
-	 -p 8000:8000 \
+	 -p 8080:8080 \
 	 -v $(PWD)/..:/opt/gopath/src/$(PKG)/.. \
 	 -w /opt/gopath/src/$(PKG) \
 	 $(DEV_IMAGE) sh
@@ -74,7 +74,7 @@ dev:
 dev-ui:
 	docker run --rm -it \
 	 --name $(APP)-dev \
-	 -p 8000:8000 \
+	 -p 8080:8080 \
 	 -v $(PWD)/ui:/opt/ui \
 	 -w /opt/ui \
 	 $(UIDEV_IMAGE) bash
