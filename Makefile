@@ -3,7 +3,6 @@ APP := diego
 PKG := github.com/ckeyer/$(APP)
 
 GO := CGO_ENABLED=0 GOBIN=${PWD}/bundles go
-# HASH := $(shell which sha1sum || which shasum)
 
 # OS := $(shell go env GOOS)
 # ARCH := $(shell go env GOARCH)
@@ -17,7 +16,6 @@ LD_FLAGS := -X github.com/ckeyer/commons/version.version=$(VERSION) \
  -X github.com/ckeyer/commons/version.gitCommit=$(GIT_COMMIT) \
  -X github.com/ckeyer/commons/version.buildAt=$(BUILD_AT) -w
 
-# IMAGE := ckeyer/${APP}
 DEV_IMAGE := golang:alpine
 UIDEV_IMAGE := registry.cn-beijing.aliyuncs.com/ckeyer/dev:vue
 
