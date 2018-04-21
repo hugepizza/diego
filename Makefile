@@ -3,45 +3,42 @@ APP := diego
 PKG := github.com/ckeyer/$(APP)
 
 GO := CGO_ENABLED=0 GOBIN=${PWD}/bundles go
+HASH := $(shell which shasum || which sha1sum)
 
-# OS := $(shell go env GOOS)
-# ARCH := $(shell go env GOARCH)
-# VERSION := $(shell cat VERSION.txt)
-# GIT_COMMIT := $(shell git rev-parse --short HEAD)
-# GIT_BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
-# BUILD_AT := $(shell date "+%Y-%m-%dT%H:%M:%SZ%z")
-# PACKAGE_NAME := $(APP)$(VERSION).$(OS)-$(ARCH)
+OS := $(shell go env GOOS)
+ARCH := $(shell go env GOARCH)
+VERSION := $(shell cat VERSION.txt)
+GIT_COMMIT := $(shell git rev-parse --short HEAD)
+GIT_BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
+BUILD_AT := $(shell date "+%Y-%m-%dT%H:%M:%SZ%z")
+PACKAGE_NAME := $(APP)$(VERSION).$(OS)-$(ARCH)
 
 LD_FLAGS := -X github.com/ckeyer/commons/version.version=$(VERSION) \
  -X github.com/ckeyer/commons/version.gitCommit=$(GIT_COMMIT) \
  -X github.com/ckeyer/commons/version.buildAt=$(BUILD_AT) -w
 
-DEV_IMAGE := golang:alpine
-UIDEV_IMAGE := registry.cn-beijing.aliyuncs.com/ckeyer/dev:vue
+IMAGE := ckeyer/${APP}
+GO_IMAGE := ckeyer/go:1.10
+UI_IMAGE := ckeyer/dev:vue
 
 gorun:
 	$(GO) run -ldflags="$(LD_FLAGS)" main.go
 
-local:
-	$(GO) install -a -ldflags="$(LD_FLAGS)" .
-	make hash
-
-build:
-	tools/build.sh
-	# $(GO) build -a -ldflags="$(LD_FLAGS)" -o bundles/$(APP) main.go
-	# make hash
-
-hash:
-	$(HASH) bundles/$(APP)
+build: go-bindata
+	$(GO) build -v -ldflags="$(LD_FLAGS)" -o ${GOPATH}/bin/$(APP) main.go
+	$(HASH) ${GOPATH}/bin/$(APP)
 
 test:
 	$(GO) test $$(go list ./... |grep -v "vendor")
+
+image:
+	docker build -t ${IMAGE}:${VERSION} .
 
 test-in-docker:
 	docker run --rm \
 	 -v ${PWD}:/go/src/${PKG} \
 	 -w /go/src/${PKG} \
-	 golang:alpine \
+	 ${GO_IMAGE} \
 	 go test -ldflags="$(LD_FLAGS)" $$(go list ./... |grep -v "vendor")
 
 go-bindata:
@@ -67,12 +64,12 @@ dev:
 	 -p 8080:8080 \
 	 -v $(PWD)/..:/opt/gopath/src/$(PKG)/.. \
 	 -w /opt/gopath/src/$(PKG) \
-	 $(DEV_IMAGE) sh
+	 $(GO_IMAGE) sh
 
 dev-ui:
 	docker run --rm -it \
 	 --name $(APP)-dev \
 	 -p 8080:8080 \
-	 -v $(PWD)/ui:/opt/ui \
-	 -w /opt/ui \
-	 $(UIDEV_IMAGE) bash
+	 -v $(PWD)/ui:/opt/diego \
+	 -w /opt/diego \
+	 $(UI_IMAGE) bash
