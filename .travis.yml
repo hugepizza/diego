@@ -19,8 +19,8 @@ before_install:
 
 script:
   - make test
-  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-  - tools/build.sh
+  - echo "test successful."
 
 after_success:
-  - echo "test successful."
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - make push-image
