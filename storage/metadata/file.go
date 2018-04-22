@@ -1,4 +1,4 @@
-package storage
+package metadata
 
 import (
 	"os"
@@ -14,4 +14,5 @@ func walkFn(path string, info os.FileInfo, err error) error {
 	if info.IsDir() {
 		return nil
 	}
+	return nil
 }

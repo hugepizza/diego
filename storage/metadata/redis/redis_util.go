@@ -1,4 +1,4 @@
-package storage
+package redis
 
 import (
 	"bytes"
@@ -6,40 +6,39 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/ckeyer/diego/storage/metadata"
 	"github.com/gomodule/redigo/redis"
 )
 
 const (
 	rCmdExists = "EXISTS"
-	rCmdSetnx  = "SETNX"
 	rCmdSet    = "SET"
+	rCmdSetnx  = "SETNX"
+	rCmdSetex  = "SETEX"
 	rCmdGet    = "GET"
 	rCmdMget   = "MGET"
 	rCmdKeys   = "KEYS"
+	rCmdDel    = "DEL"
 )
 
-// setKV
-func (r *RedisStorage) setKV(kr Keyer, nx bool) error {
-	key := kr.Key()
-	if nx {
-		n, err := redis.Int(r.Do(rCmdExists, key))
-		if err != nil {
-			return err
-		}
-		if n == 1 {
-			return fmt.Errorf("user already exists.")
-		}
+// setKV,
+//  exists:
+//    nil:   SET
+//    true:  SETEX
+//    false: SETNX
+func (r *RedisStorage) setKV(key string, v interface{}, exists ...bool) error {
+	buf := new(bytes.Buffer)
+	if err := json.NewEncoder(buf).Encode(v); err != nil {
+		return err
 	}
 
 	cmd := rCmdSet
-	if nx {
-		cmd = rCmdSetnx
-	}
-
-	buf := new(bytes.Buffer)
-	err := json.NewEncoder(buf).Encode(kr)
-	if err != nil {
-		return err
+	if len(exists) == 1 {
+		if exists[0] {
+			cmd = rCmdSetex
+		} else {
+			cmd = rCmdSetnx
+		}
 	}
 
 	n, err := redis.Int(r.Do(cmd, key, buf.String()))
@@ -47,7 +46,7 @@ func (r *RedisStorage) setKV(kr Keyer, nx bool) error {
 		return err
 	}
 	if n == 0 {
-		return fmt.Errorf("insert failed.")
+		return fmt.Errorf("insert 0 keys.")
 	}
 
 	return nil
@@ -55,7 +54,7 @@ func (r *RedisStorage) setKV(kr Keyer, nx bool) error {
 
 // getKV
 func (r *RedisStorage) getKV(key string, v interface{}) error {
-	data, err := redis.Bytes(r.Do("GET", key))
+	data, err := redis.Bytes(r.Do(rCmdGet, key))
 	if err != nil {
 		return err
 	}
@@ -66,8 +65,30 @@ func (r *RedisStorage) getKV(key string, v interface{}) error {
 	return nil
 }
 
+func (r *RedisStorage) existsKey(key string) (bool, error) {
+	n, err := redis.Int(r.Do(rCmdExists, key))
+	if err != nil {
+		return false, err
+	}
+	if n == 0 {
+		return false, nil
+	}
+	return true, nil
+}
+
+func (r *RedisStorage) deleteKey(key string) error {
+	n, err := redis.Int(r.Do(rCmdDel, key))
+	if err != nil {
+		return err
+	}
+	if n == 0 {
+		return metadata.ErrNotExists
+	}
+	return nil
+}
+
 // keys
-func (r *RedisStorage) getKeys(query string) ([]interface{}, error) {
+func (r *RedisStorage) listKeys(query string) ([]interface{}, error) {
 	ret := []interface{}{}
 	ks, err := redis.Strings(r.Do(rCmdKeys, query))
 	if err != nil {
@@ -80,7 +101,7 @@ func (r *RedisStorage) getKeys(query string) ([]interface{}, error) {
 }
 
 func (r *RedisStorage) listKVs(query string, v interface{}) error {
-	ks, err := r.getKeys(query)
+	ks, err := r.listKeys(query)
 	if err != nil {
 		return err
 	}

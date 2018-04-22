@@ -9,31 +9,22 @@ type User struct {
 	Email string `json:"email"`
 	Desc  string `json:"desc"`
 
-	Joined time.Time `json:"joined"`
-}
-
-func (u *User) Prefix() string {
-	return "user:"
-}
-
-// Key
-func (u *User) Key() string {
-	return u.Prefix() + u.Name
+	Joined  time.Time `json:"joined"`
+	Updated time.Time `json:"updated"`
 }
 
 type Org struct {
 	Name  string `json:"name"`
 	Email string `json:"email"`
 	Desc  string `json:"desc"`
+	Owner string `json:"owner"`
 
 	Created time.Time `json:"created"`
+	Updated time.Time `json:"updated"`
 }
 
-func (o *Org) Prefix() string {
-	return "org:"
-}
-
-// Key
-func (o *Org) Key() string {
-	return o.Prefix() + o.Name
+type Namespace struct {
+	Name      string `json:"name"`
+	OwnerType string `json:"owner_type"`
+	Labels    Labels `json:"labels"`
 }
