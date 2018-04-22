@@ -34,6 +34,10 @@ test:
 image:
 	docker build -t ${IMAGE}:${VERSION} .
 
+push-image: image
+	docker push ${IMAGE}:${VERSION}
+	@echo "push image ${IMAGE}:${VERSION} successful."
+
 test-in-docker:
 	docker run --rm \
 	 -v ${PWD}:/go/src/${PKG} \
