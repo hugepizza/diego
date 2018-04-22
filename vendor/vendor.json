@@ -11,20 +11,20 @@
 		{
 			"checksumSHA1": "NcH9iGLV1KaEe4V2MO0cjptWFZI=",
 			"path": "github.com/ckeyer/commons/debug",
-			"revision": "3d639cdaa041e91a4cffc09ecdd3920cc13cdc38",
-			"revisionTime": "2018-03-24T10:25:11Z"
+			"revision": "6d20d597a9b0d7f640031abcecbe9f7f4625c178",
+			"revisionTime": "2018-04-05T18:02:45Z"
 		},
 		{
 			"checksumSHA1": "4R9lCoh0Sd/M2hGww5hN73kbIko=",
 			"path": "github.com/ckeyer/commons/validate",
-			"revision": "3d639cdaa041e91a4cffc09ecdd3920cc13cdc38",
-			"revisionTime": "2018-03-24T10:25:11Z"
+			"revision": "6d20d597a9b0d7f640031abcecbe9f7f4625c178",
+			"revisionTime": "2018-04-05T18:02:45Z"
 		},
 		{
 			"checksumSHA1": "rIG02T9e0/UDe1b9X3UkpIoa+Fk=",
 			"path": "github.com/ckeyer/commons/version",
-			"revision": "3d639cdaa041e91a4cffc09ecdd3920cc13cdc38",
-			"revisionTime": "2018-03-24T10:25:11Z"
+			"revision": "6d20d597a9b0d7f640031abcecbe9f7f4625c178",
+			"revisionTime": "2018-04-05T18:02:45Z"
 		},
 		{
 			"checksumSHA1": "msTaHvvIzp3ANluqUAd1BufLEac=",
@@ -93,16 +93,16 @@
 			"revisionTime": "2017-03-22T23:44:13Z"
 		},
 		{
-			"checksumSHA1": "e7mAb9jMke2ASQGZepFgOmfBFzM=",
+			"checksumSHA1": "imvfVf7lRxu0Fz7V2G43CUC6Ff0=",
 			"path": "github.com/spf13/cobra",
-			"revision": "1be1d2841c773c01bee8289f55f7463b6e2c2539",
-			"revisionTime": "2017-11-23T00:13:03Z"
+			"revision": "615425954c3b0d9485a7027d4d451fdcdfdee84e",
+			"revisionTime": "2018-04-12T12:08:29Z"
 		},
 		{
-			"checksumSHA1": "fKq6NiaqP3DFxnCRF5mmpJWTSUA=",
+			"checksumSHA1": "k5TsfhX2vvfffYbZQ4fMKtL5+cA=",
 			"path": "github.com/spf13/pflag",
-			"revision": "4c012f6dcd9546820e378d0bdda4d8fc772cdfea",
-			"revisionTime": "2017-11-06T14:28:49Z"
+			"revision": "583c0c0531f06d5278b7d917446061adc344b5cd",
+			"revisionTime": "2018-04-12T12:09:13Z"
 		},
 		{
 			"checksumSHA1": "0FCBLTqGOxgifAKfS0360iLTZR4=",
@@ -131,14 +131,14 @@
 		{
 			"checksumSHA1": "39V1idWER42Lmcmg2Uy40wMzOlo=",
 			"path": "gopkg.in/go-playground/validator.v8",
-			"revision": "5f57d2222ad794d0dffb07e664ea05e2ee07d60c",
-			"revisionTime": "2016-07-18T13:41:25Z"
+			"revision": "5f1438d3fca68893a817e4a66806cea46a9e4ebf",
+			"revisionTime": "2017-07-30T05:02:35Z"
 		},
 		{
-			"checksumSHA1": "fRgp9UZPllOlkPssv7frzQx4z9A=",
+			"checksumSHA1": "AnKBN2Q4AWaSNb0JyINBQbnpxGM=",
 			"path": "gopkg.in/yaml.v2",
-			"revision": "287cf08546ab5e7e37d55a84f7ed3fd1db036de5",
-			"revisionTime": "2017-11-16T09:02:43Z"
+			"revision": "7f97868eec74b32b0982dd158a51a446d1da7eb5",
+			"revisionTime": "2018-02-23T19:12:37Z"
 		}
 	],
 	"rootPath": "github.com/ckeyer/diego"
