@@ -1,6 +1,8 @@
 package redis
 
 import (
+	"strings"
+
 	"github.com/ckeyer/diego/storage/metadata"
 	"github.com/gomodule/redigo/redis"
 )
@@ -18,20 +20,25 @@ func NewRedisStorager(conn redis.Conn) metadata.MetadataStorager {
 }
 
 const (
-	keyPrefixNamespace = "ns:"
-	keyPrefixUser      = "user:"
-	keyPrefixOrg       = "org:"
-	// keyPrefixProject   = "prj:"
+	keySeparator = ":"
+
+	keyPrefixNamespace = "ns"
+	keyPrefixUser      = "user"
+	keyPrefixOrg       = "org"
+	keyPrefixProject   = "prj"
 )
 
 var (
 	nsKey   = redisKeyFunc(keyPrefixNamespace)
 	userKey = redisKeyFunc(keyPrefixUser)
 	orgKey  = redisKeyFunc(keyPrefixOrg)
+	prjKey  = func(ns, name string) string {
+		return strings.Join([]string{keyPrefixProject, ns, name}, keySeparator)
+	}
 )
 
 func redisKeyFunc(prefix string) func(string) string {
 	return func(name string) string {
-		return prefix + name
+		return prefix + keySeparator + name
 	}
 }

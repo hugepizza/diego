@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/ckeyer/commons/validate"
@@ -12,7 +11,7 @@ import (
 
 func CheckUserName() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		exi, err := stogr.ExistsUser(ctx.Param("name"))
+		exi, err := stogr.ExistsNamespace(ctx.Param("name"))
 		if err != nil {
 			InternalServerErr(ctx, err)
 			return
@@ -38,16 +37,6 @@ func CreateUser() gin.HandlerFunc {
 			return
 		}
 
-		exi, err := stogr.ExistsUser(ctx.Param("name"))
-		if err != nil {
-			InternalServerErr(ctx, err)
-			return
-		}
-		if exi {
-			InternalServerErr(ctx, fmt.Errorf("exists user or org."))
-			return
-		}
-
 		if err := stogr.CreateUser(user); err != nil {
 			InternalServerErr(ctx, err)
 			return
@@ -69,16 +58,6 @@ func CreateOrg() gin.HandlerFunc {
 			return
 		}
 
-		exi, err := stogr.ExistsUser(ctx.Param("name"))
-		if err != nil {
-			InternalServerErr(ctx, err)
-			return
-		}
-		if exi {
-			InternalServerErr(ctx, fmt.Errorf("exists user or org."))
-			return
-		}
-
 		if err := stogr.CreateOrg(org); err != nil {
 			InternalServerErr(ctx, err)
 			return
@@ -90,7 +69,7 @@ func CreateOrg() gin.HandlerFunc {
 
 func ListUsers() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		us, err := stogr.ListUsers()
+		us, err := stogr.ListUsers(types.ListUserOption{})
 		if err != nil {
 			InternalServerErr(ctx, err)
 			return
@@ -116,7 +95,7 @@ func GetUserProfile() gin.HandlerFunc {
 
 func ListOrgs() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		os, err := stogr.ListOrgs()
+		os, err := stogr.ListOrgs(types.ListOrgOption{})
 		if err != nil {
 			InternalServerErr(ctx, err)
 			return

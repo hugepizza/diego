@@ -44,9 +44,10 @@ type NamespaceStorager interface {
 }
 
 type ProjectStorager interface {
-	GetProject(string) (*types.Project, error)
-	ListProjects(string) ([]*types.Project, error)
+	GetProject(namespace, name string) (*types.Project, error)
+	ListProjects(namespace string) ([]*types.Project, error)
 	CreateProject(*types.Project) error
+	RemoveProject(namespace, name string) error
 }
 
 type FileIndexer interface {

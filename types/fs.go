@@ -1,7 +1,6 @@
 package types
 
 import (
-	"fmt"
 	"os"
 	"time"
 )
@@ -19,9 +18,9 @@ const (
 
 // Project
 type Project struct {
-	Name  string `json:"name"`
-	Owner string `json:"owner"`
-	Desc  string `json:"desc"`
+	Name      string `json:"name"`
+	Namespace string `json:"namespace"`
+	Desc      string `json:"desc"`
 
 	Created time.Time `json:"created"`
 }
@@ -46,37 +45,4 @@ type FileMetadata struct {
 type FilePath struct {
 	Hash string
 	Path string
-}
-
-func (p *Project) Prefix() string {
-	return "prj:"
-}
-
-// Key
-func (p *Project) Key() string {
-	return fmt.Sprintf("%s:%s:%s", p.Prefix(), p.Owner, p.Name)
-}
-
-// Key
-func (f *FileMetadata) Prefix() string {
-	return "fileinfo:"
-}
-
-// Key
-func (f *FileMetadata) Key() string {
-	path := f.Name
-	if f.Path != "" {
-		path = f.Path
-	}
-	return fmt.Sprintf("%s:%s:%s:%s@%s", f.Prefix(), f.Owner, f.Project, path, f.Version)
-}
-
-// Key
-func (f *FilePath) Prefix() string {
-	return "filepath:"
-}
-
-// Key
-func (f *FilePath) Key() string {
-	return f.Prefix() + f.Hash
 }

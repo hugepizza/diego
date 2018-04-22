@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	stogr storage.Storeger
+	stogr storage.Storager
 )
 
 const (
@@ -21,7 +21,7 @@ const (
 )
 
 // Serve start http server.
-func Serve(addr string, str storage.Storeger) error {
+func Serve(addr string, str storage.Storager) error {
 	lis, err := net.Listen("tcp", addr)
 	if err != nil {
 		return err
