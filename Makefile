@@ -2,7 +2,7 @@ PWD := $(shell pwd)
 APP := diego
 PKG := github.com/ckeyer/$(APP)
 
-GO := CGO_ENABLED=0 GOBIN=${PWD}/bundles go
+GO := go
 HASH := $(shell which shasum || which sha1sum)
 
 OS := $(shell go env GOOS)
@@ -18,13 +18,16 @@ LD_FLAGS := -X github.com/ckeyer/commons/version.version=$(VERSION) \
  -X github.com/ckeyer/commons/version.buildAt=$(BUILD_AT) -w
 
 IMAGE := ckeyer/${APP}
-GO_IMAGE := ckeyer/go:1.10
+GO_IMAGE := ckeyer/dev:go
 UI_IMAGE := ckeyer/dev:vue
+
+env:
+	$(GO) env
 
 gorun:
 	$(GO) run -ldflags="$(LD_FLAGS)" main.go
 
-build: go-bindata
+build: env go-bindata
 	$(GO) build -v -ldflags="$(LD_FLAGS)" -o ${GOPATH}/bin/$(APP) main.go
 	$(HASH) ${GOPATH}/bin/$(APP)
 
