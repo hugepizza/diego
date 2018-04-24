@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/ckeyer/commons/version"
 	"github.com/ckeyer/diego/api"
 	"github.com/ckeyer/diego/global"
 	"github.com/ckeyer/diego/storage"
@@ -65,5 +66,16 @@ func runServe(cmd *cobra.Command, args []string) {
 
 // Execute cmd main
 func Execute() {
+	rootCmd.AddCommand(printVersionCmd())
 	rootCmd.Execute()
+}
+
+func printVersionCmd() *cobra.Command {
+	return &cobra.Command{
+		Use:     "version",
+		Aliases: []string{"v"},
+		Run: func(cmd *cobra.Command, args []string) {
+			version.Print(nil)
+		},
+	}
 }

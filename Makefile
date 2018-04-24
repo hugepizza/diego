@@ -13,9 +13,10 @@ GIT_BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
 BUILD_AT := $(shell date "+%Y-%m-%dT%H:%M:%SZ%z")
 PACKAGE_NAME := $(APP)$(VERSION).$(OS)-$(ARCH)
 
-LD_FLAGS := -X github.com/ckeyer/commons/version.version=$(VERSION) \
- -X github.com/ckeyer/commons/version.gitCommit=$(GIT_COMMIT) \
- -X github.com/ckeyer/commons/version.buildAt=$(BUILD_AT) -w
+COMMONS_PKG := $(PKG)/vendor/github.com/ckeyer/commons
+LD_FLAGS := -X ${COMMONS_PKG}/version.version=$(VERSION) \
+ -X ${COMMONS_PKG}/version.gitCommit=$(GIT_COMMIT) \
+ -X ${COMMONS_PKG}/version.buildAt=$(BUILD_AT)
 
 IMAGE := ckeyer/${APP}
 GO_IMAGE := ckeyer/dev:go
