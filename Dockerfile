@@ -17,7 +17,7 @@ ENV CGO_ENABLED=0
 COPY . /go/src/github.com/ckeyer/diego
 COPY --from=uidist /opt/diego/dist /go/src/github.com/ckeyer/diego/ui/dist
 
-RUN cd /go/src/github.com/ckeyer/diego && \
+RUN cd /go/src/github.com/ckeyer/diego ;\
 	make build
 
 # ckeyer/diego

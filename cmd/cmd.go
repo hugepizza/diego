@@ -13,7 +13,6 @@ import (
 
 var (
 	addr          string
-	debug         bool
 	dataDir       string
 	storageMode   string
 	redisEndpoint string
@@ -23,6 +22,13 @@ var (
 		Use:   "diego",
 		Short: "diego 版本发布系统",
 		Run:   runServe,
+		PersistentPreRun: func(cmd *cobra.Command, args []string) {
+			if global.Debug {
+				logrus.SetLevel(logrus.DebugLevel)
+				logrus.Debug("debug mode")
+				logrus.SetFormatter(&logrus.JSONFormatter{})
+			}
+		},
 	}
 )
 

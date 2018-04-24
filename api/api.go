@@ -30,9 +30,9 @@ func Serve(addr string, str storage.Storager) error {
 	stogr = str
 
 	gs := gin.New()
+	gs.Use(MDCors())
 	gs.NoRoute(view.UI())
 	gs.Use(MDRecovery(), MDLogger())
-	gs.Use(MDCors())
 
 	apiRoute(gs.Group(API_PREFIX))
 
@@ -48,22 +48,24 @@ func Serve(addr string, str storage.Storager) error {
 
 // apiRoute api router.
 func apiRoute(gr *gin.RouterGroup) {
-	// gr.GET("/path/*path", todo)
+	gr.GET("/_ping", todo)
 
 	gr.GET("/users", ListUsers())
 	gr.POST("/users", CreateUser())
 	gr.GET("/users/:name", GetUserProfile())
-	gr.GET("/users/:name/check", CheckUserName())
+	gr.GET("/users/:name/check", CheckNamespace())
 
 	gr.GET("/orgs", ListOrgs())
 	gr.POST("/orgs", CreateOrg())
 	gr.GET("/orgs/:name", GetOrgProfile())
-	gr.GET("/orgs/:name/check", CheckUserName())
+	gr.GET("/orgs/:name/check", CheckNamespace())
 
-	gr.GET("/users/:name/projects", ListProjects())
-	gr.GET("/users/:name/projects/:project", GetProjectProfile())
-	gr.GET("/orgs/:name/projects", ListProjects())
-	gr.GET("/orgs/:name/projects/:project", GetProjectProfile())
+	gr.GET("/projects/:namespace", ListProjects())
+	gr.GET("/projects/:namespace/:name", GetProjectProfile())
+	gr.POST("/projects/:namespace", CreateProject())
+	gr.DELETE("/projects/:namespace/:name", RemoveProject())
+
+	gr.POST("/files/:namespace/:name", UploadFile())
 }
 
 // dlRoute api router.
@@ -72,7 +74,10 @@ func dlRoute(gr *gin.RouterGroup) {
 }
 
 func todo(ctx *gin.Context) {
-	logrus.Infof("path: %s", ctx.Param("path"))
+	logrus.WithFields(logrus.Fields{
+		"method": ctx.Request.Method,
+		"path":   ctx.Request.URL.String(),
+	}).Infof("ok.")
 	InternalServerErr(ctx, "todo")
 }
 

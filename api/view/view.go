@@ -17,7 +17,7 @@ func UI() gin.HandlerFunc {
 		path := strings.TrimPrefix(ctx.Request.URL.Path, "/")
 
 		ctx.Writer.WriteHeader(http.StatusOK)
-		ctx.Writer.Header().Add("Content-Encoding", "gzip")
+		// ctx.Writer.Header().Add("Content-Encoding", "gzip")
 
 		switch {
 		case strings.HasSuffix(path, ".html"):
@@ -39,10 +39,36 @@ func UI() gin.HandlerFunc {
 		if err != nil {
 			logrus.Debugf("get path %s failed, use index.", path)
 			ctx.Writer.Header().Set("Content-Type", "text/html")
-			ctx.Writer.Write(Index)
-			return
+
+			body = Index
+		} else {
+			logrus.Debugf("get path %s and return.", path)
 		}
-		logrus.Debugf("get path %s and return.", path)
+
+		// if !acceptGzip(ctx.Request.Header) {
+		ctx.Writer.Header().Add("Content-Encoding", "gzip")
 		ctx.Writer.Write(body)
+		// } else {
+		// 	gz, err := gzip.NewReader(bytes.NewBuffer(body))
+		// 	if err != nil {
+		// 		ctx.Writer.Write([]byte(err.Error()))
+		// 		return
+		// 	}
+		// 	io.Copy(ctx.Writer, gz)
+		// 	gz.Close()
+		// }
 	}
+}
+
+func acceptGzip(hdr http.Header) bool {
+	if hdr == nil {
+		return false
+	}
+
+	if strings.Contains(hdr.Get("Accept-Encoding"), "gzip") {
+		logrus.Debug("request accept gzip")
+		return true
+	}
+
+	return false
 }
