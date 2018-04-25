@@ -61,6 +61,7 @@ release: clean local
 	cd bundles && tar zcvf $(PACKAGE_NAME).tgz $(PACKAGE_NAME)
 
 clean:
+	rm -f api/view/assets.go
 	rm -rf bundles/*
 
 only-image:

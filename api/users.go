@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func CheckUserName() gin.HandlerFunc {
+func CheckNamespace() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		exi, err := stogr.ExistsNamespace(ctx.Param("name"))
 		if err != nil {
