@@ -48,6 +48,8 @@ type ProjectStorager interface {
 	ListProjects(namespace string) ([]*types.Project, error)
 	CreateProject(*types.Project) error
 	RemoveProject(namespace, name string) error
+
+	CreateFile() error
 }
 
 type FileIndexer interface {

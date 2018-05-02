@@ -21,28 +21,23 @@ type Project struct {
 	Name      string `json:"name"`
 	Namespace string `json:"namespace"`
 	Desc      string `json:"desc"`
+	Labels    Labels `json:"labels"`
 
 	Created time.Time `json:"created"`
 }
 
 // Metadata
 type FileMetadata struct {
-	Name    string            `json:"name"`
-	Owner   string            `json:"owner"`
-	Project string            `json:"project"`
-	Path    string            `json:"path"`
-	Size    int64             `json:"size"`
-	Hash    string            `json:"hash"`
-	Type    string            `json:"type"`
-	Mode    os.FileMode       `json:"mode"`
-	ModTime time.Time         `json:"modified"`
-	CrdTime time.Time         `json:"created"`
-	Version string            `json:"version"`
-	Status  string            `json:"status"`
-	Labels  map[string]string `json:"labels"`
-}
-
-type FilePath struct {
-	Hash string
-	Path string
+	Name        string      `json:"name"`
+	Namespace   string      `json:"namespace"`
+	ProjectName string      `json:"project_name"`
+	Size        int64       `json:"size"`
+	Hash        string      `json:"hash"`
+	Type        string      `json:"type"`
+	Mode        os.FileMode `json:"mode"`
+	ModTime     time.Time   `json:"modified"`
+	CrdTime     time.Time   `json:"created"`
+	Version     string      `json:"version"`
+	Status      string      `json:"status"`
+	Labels      Labels      `json:"labels"`
 }

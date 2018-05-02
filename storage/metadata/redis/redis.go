@@ -26,6 +26,7 @@ const (
 	keyPrefixUser      = "user"
 	keyPrefixOrg       = "org"
 	keyPrefixProject   = "prj"
+	keyPrefixFile      = "file"
 )
 
 var (
@@ -34,6 +35,9 @@ var (
 	orgKey  = redisKeyFunc(keyPrefixOrg)
 	prjKey  = func(ns, name string) string {
 		return strings.Join([]string{keyPrefixProject, ns, name}, keySeparator)
+	}
+	fileKey = func(ns, name, hash string) string {
+		return strings.Join([]string{keyPrefixFile, ns, name, hash}, keySeparator)
 	}
 )
 
