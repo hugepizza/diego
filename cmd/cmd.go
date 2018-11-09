@@ -40,7 +40,7 @@ func init() {
 	rootCmd.Flags().StringVar(&redisEndpoint, "redis-endpoint", "127.0.0.1:6379", "redis address.")
 	rootCmd.Flags().StringVar(&storageMode, "storage-mode", "redis", "storage mode('redis', 'etcd', default is 'redis')")
 	rootCmd.Flags().IntVar(&redisDB, "redis-db", 0, "redis db.")
-	rootCmd.Flags().StringVar(&webhook.HookFile, "hook-config", "/home/wanglei/Documents/webhook.yaml", "webhook config file.")
+	rootCmd.Flags().StringVar(&webhook.HookFile, "hook-config", "tools/webhook/webhook.yaml", "webhook config file.")
 }
 
 // runServe start http server.
